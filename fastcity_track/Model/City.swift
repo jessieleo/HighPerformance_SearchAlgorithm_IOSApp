@@ -9,24 +9,31 @@ import UIKit
 import MapKit
 
 struct City: Decodable, Hashable {
+    
     let country: String
     let name: String
+    
     let id: Int
     let coord: Coordinate
+    
     private enum CodingKeys: String, CodingKey  {
         case country, name, id = "_id", coord
     }
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 }
 
 struct Coordinate: Decodable {
-    let lon, lat: Double
+    let latitude, longitude: Double
+    private enum CodingKeys: String, CodingKey  {
+        case latitude = "lat", longitude = "lon"
+    }
 }
 
 extension City {
-    var coordinate2D: CLLocationCoordinate2D { .init(latitude: coord.lat, longitude: coord.lon) }
+    var coordinate2D: CLLocationCoordinate2D { .init(latitude: coord.latitude, longitude: coord.longitude) }
 }
 
 extension City: Comparable {

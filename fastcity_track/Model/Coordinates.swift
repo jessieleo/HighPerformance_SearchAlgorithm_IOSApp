@@ -8,6 +8,8 @@
 import UIKit
 
 struct Coordinates: Decodable {
+    
     let lon: Double
     let lat: Double
+    
 }
