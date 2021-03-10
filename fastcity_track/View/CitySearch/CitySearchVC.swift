@@ -41,7 +41,7 @@ extension CitySearchVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         CitySearchManager.shared.results[section].count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CitySearchCell.identifier, for: indexPath) as! CitySearchCell
         let startIndex = CitySearchManager.shared.results[indexPath.section].startIndex
@@ -50,7 +50,7 @@ extension CitySearchVC {
         
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -64,7 +64,7 @@ extension CitySearchVC {
 // MARK: - UISearchResultsUpdating
 
 extension CitySearchVC {
-
+    
     func updateSearchResults(for searchController: UISearchController) {
         CitySearchManager.shared.filter(search: searchController.searchBar.text!)
         tableView.reloadData()

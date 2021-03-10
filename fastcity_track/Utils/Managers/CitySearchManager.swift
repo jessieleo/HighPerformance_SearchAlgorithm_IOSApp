@@ -20,7 +20,6 @@ class CitySearchManager {
     // the last search string
     var lastSearch = ""
     
-    
     init() {
         do {
             let url = Bundle.main.url(forResource: "cities", withExtension: "json")!
@@ -44,10 +43,10 @@ class CitySearchManager {
         }
         results = self.cities.map(\.indices)
     }
-    
+    ///this is the filter function , approximately and depending on the device as well  executing in 0.03 -0.04
     func filter(search: String) {
         print(#function)
-        let start = CFAbsoluteTimeGetCurrent()
+        let start = CFAbsoluteTimeGetCurrent() //
         
         if search.isEmpty {
             // If search is empty, all items are visible
