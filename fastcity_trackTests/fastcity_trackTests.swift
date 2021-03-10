@@ -33,11 +33,11 @@ class fastcity_trackTests: XCTestCase {
   
   
     func testRightSearches() {
-        //   If the given prefix is "A", all cities but Sydney should appear.
-        //   Contrariwise, if the given prefix is "s", the only result should be "Sydney, AU".
-        //   If the given prefix is "Al", "Alabama, US" and "Albuquerque, US" are the only results.
-        //   If the prefix given is "Alb" then the only result is "Albuquerque, US"
-        //
+        /* If the given prefix is "A", all cities but Sydney should appear.
+           Contrariwise, if the given prefix is "s", the only result should be "Sydney, AU".
+           If the given prefix is "Al", "Alabama, US" and "Albuquerque, US" are the only results.
+           If the prefix given is "Alb" then the only result is "Albuquerque, US"
+        */
         
         let searchManager = CitySearchManager(cities: cities)
         print("cities:", searchManager.cities)
@@ -86,6 +86,21 @@ class fastcity_trackTests: XCTestCase {
             ]
         )
 
+    }
+    
+    func testWrongSearches() {
+        //these searches are invalid so test is supposed to be pass; if it could be written as  Amsterdam it will supposed to be fail
+        let searches = ["centeroftheMars", "tdsftt", "istttanbul", "Sevillq", "Ansterdam"]
+        
+        let searchManager = CitySearchManager(cities: cities)
+        print("cities:", searchManager.cities)
+
+        searches.forEach {
+            searchManager.filter(search: $0)
+            let index = $0.initial!.index
+            let subRange = searchManager.results[index]
+            XCTAssert(searchManager.cities[index][subRange].isEmpty, "should not find city named \($0)")
+        }
     }
     
 }
