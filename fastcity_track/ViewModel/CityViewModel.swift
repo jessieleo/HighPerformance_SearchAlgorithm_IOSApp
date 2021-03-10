@@ -9,13 +9,21 @@ import Foundation
 import CoreLocation
 
 class CityViewModel {
-    let displayName: String
-    let displayCoordinate: String
-    let coord: CLLocationCoordinate2D
+    
+    let cityAndCountry: String
+    let coordinate2D: CLLocationCoordinate2D
     
     init(with city: City) {
-        self.displayName = "\(city.name), \(city.country)"
-        self.displayCoordinate = "\(city.coord.lon), \(city.coord.lat) "
-        self.coord = city.coordinate2D
+        self.cityAndCountry = city.name + ", " + city.country
+        self.coordinate2D = city.coordinate2D
+    }
+    
+}
+
+extension CityViewModel {
+    var coordinateDetail: String {
+        "Latidude: " + String(format: "%0.6f", coordinate2D.latitude) + " / " +
+        "Longitude: " + String(format: "%0.6f", coordinate2D.longitude)
     }
 }
+
