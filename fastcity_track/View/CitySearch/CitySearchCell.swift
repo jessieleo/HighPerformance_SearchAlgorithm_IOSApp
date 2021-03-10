@@ -13,8 +13,8 @@ class CitySearchCell: UITableViewCell {
     
     var cityViewModel: CityViewModel! {
         didSet {
-            textLabel?.text = cityViewModel.displayName
-            detailTextLabel?.text = cityViewModel.displayCoordinate
+            textLabel?.text = cityViewModel.cityAndCountry
+            detailTextLabel?.text = cityViewModel.coordinateDetail
             accessoryType = .disclosureIndicator
         }
     }

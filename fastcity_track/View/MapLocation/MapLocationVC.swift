@@ -20,8 +20,8 @@ class MapLocationVC: UIViewController, MKMapViewDelegate {
     init(with city: CityViewModel) {
         super.init(nibName: nil, bundle: nil)
         
-        self.centerCoordinates = city.coord
-        self.cityName = city.displayName
+        self.centerCoordinates = city.coordinate2D
+        self.cityName = city.cityAndCountry
     }
     
     required init?(coder: NSCoder) {

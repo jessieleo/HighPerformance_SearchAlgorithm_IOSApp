@@ -35,16 +35,16 @@ class CitySearchVC: UITableViewController, UISearchResultsUpdating {
 extension CitySearchVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        CitySearchManager.shared.ranges.count
+        CitySearchManager.shared.results.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        CitySearchManager.shared.ranges[section].count
+        CitySearchManager.shared.results[section].count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CitySearchCell.identifier, for: indexPath) as! CitySearchCell
-        let startIndex = CitySearchManager.shared.ranges[indexPath.section].startIndex
+        let startIndex = CitySearchManager.shared.results[indexPath.section].startIndex
         let city = CitySearchManager.shared.cities[indexPath.section][indexPath.row + startIndex]
         cell.cityViewModel = initializeViewModelWith(city)
         
@@ -54,7 +54,7 @@ extension CitySearchVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         tableView.deselectRow(at: indexPath, animated: true)
-        let startIndex = CitySearchManager.shared.ranges[indexPath.section].startIndex
+        let startIndex = CitySearchManager.shared.results[indexPath.section].startIndex
         let city = CitySearchManager.shared.cities[indexPath.section][indexPath.row + startIndex]
         let mapLocationVC = MapLocationVC(with: initializeViewModelWith(city))
         navigationController?.pushViewController(mapLocationVC, animated: true)
