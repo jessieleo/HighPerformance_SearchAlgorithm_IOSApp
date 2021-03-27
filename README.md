@@ -1,4 +1,3 @@
-# fastcity_track
 
 - This project which is an instant search with a given prefix via search bar shows cities to users by clicking can go to the location.
 - Searching is more efficient, I am using search and only searching the subsequence when the user adds another character.
